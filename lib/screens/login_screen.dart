@@ -47,19 +47,26 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                   SizedBox(height: 20),
-                  ElevatedButton(
-                    onPressed: () {},
+                  Container(
+                    alignment: Alignment.center,
+                    height: 50,
+                    width: 150,
+                    decoration: BoxDecoration(
+                      color: Colors.deepPurple,
+                      borderRadius: BorderRadius.circular(8),
+                    ),
                     child: Text(
                       "Login",
-                      textScaleFactor: 1.3,
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
-                    style: ButtonStyle(
-                      fixedSize: MaterialStateProperty.all(Size(150, 50)),
-                    ),
-                  )
+                  ),
                 ],
               ),
-            )
+            ),
           ],
         ),
       ),
