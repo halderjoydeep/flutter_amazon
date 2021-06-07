@@ -13,7 +13,9 @@ class _LoginScreenState extends State<LoginScreen> {
   bool loginSuccessful = false;
   goToHome() {
     if (loginFormKey.currentState!.validate()) {
-      print('login successful');
+      setState(() {
+        loginSuccessful = true;
+      });
     }
   }
 
@@ -76,21 +78,25 @@ class _LoginScreenState extends State<LoginScreen> {
                   SizedBox(height: 20),
                   Material(
                     color: Colors.deepPurple,
-                    borderRadius: BorderRadius.circular(8),
+                    borderRadius:
+                        BorderRadius.circular(loginSuccessful ? 50 : 8),
                     child: InkWell(
                       borderRadius: BorderRadius.circular(8),
-                      child: Container(
+                      child: AnimatedContainer(
+                        duration: Duration(seconds: 1),
                         alignment: Alignment.center,
                         height: 50,
-                        width: 150,
-                        child: Text(
-                          "Login",
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
+                        width: loginSuccessful ? 50 : 150,
+                        child: loginSuccessful
+                            ? Icon(Icons.done, color: Colors.white)
+                            : Text(
+                                "Login",
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
                       ),
                       onTap: () {
                         goToHome();
