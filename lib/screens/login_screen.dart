@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
 
+  @override
+  _LoginScreenState createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  String name = '';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -12,7 +18,7 @@ class LoginScreen extends StatelessWidget {
             Image.asset('assets/images/login_image.png'),
             SizedBox(height: 16),
             Text(
-              "Welcome",
+              "Welcome $name",
               style: TextStyle(
                 fontSize: 28,
                 fontWeight: FontWeight.bold,
@@ -28,6 +34,10 @@ class LoginScreen extends StatelessWidget {
                       labelText: "Username",
                       hintText: "Enter the username",
                     ),
+                    onChanged: (value) {
+                      name = value;
+                      setState(() {});
+                    },
                   ),
                   TextFormField(
                     obscureText: true,
