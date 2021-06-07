@@ -26,7 +26,7 @@ class _LoginScreenState extends State<LoginScreen> {
         child: Column(
           children: [
             Image.asset('assets/images/login_image.png'),
-            SizedBox(height: 16),
+            SizedBox(height: 20),
             Text(
               "Welcome $name",
               style: TextStyle(
@@ -44,9 +44,17 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: Column(
                       children: [
                         TextFormField(
+                          cursorColor: Theme.of(context).accentColor,
                           decoration: InputDecoration(
                             labelText: "Username",
                             hintText: "Enter the username",
+                            labelStyle:
+                                TextStyle(color: Theme.of(context).accentColor),
+                            focusedBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Theme.of(context).accentColor,
+                              ),
+                            ),
                           ),
                           onChanged: (value) {
                             name = value;
@@ -61,9 +69,17 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         TextFormField(
                           obscureText: true,
+                          cursorColor: Theme.of(context).accentColor,
                           decoration: InputDecoration(
                             labelText: "Password",
                             hintText: "Enter the password",
+                            labelStyle:
+                                TextStyle(color: Theme.of(context).accentColor),
+                            focusedBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Theme.of(context).accentColor,
+                              ),
+                            ),
                           ),
                           validator: (value) {
                             if (value!.length < 6) {
@@ -77,7 +93,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   SizedBox(height: 20),
                   Material(
-                    color: Colors.deepPurple,
+                    color: Theme.of(context).buttonColor,
                     borderRadius:
                         BorderRadius.circular(loginSuccessful ? 50 : 8),
                     child: InkWell(
