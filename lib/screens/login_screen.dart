@@ -47,21 +47,25 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                   SizedBox(height: 20),
-                  Container(
-                    alignment: Alignment.center,
-                    height: 50,
-                    width: 150,
-                    decoration: BoxDecoration(
-                      color: Colors.deepPurple,
+                  Material(
+                    color: Colors.deepPurple,
+                    borderRadius: BorderRadius.circular(8),
+                    child: InkWell(
                       borderRadius: BorderRadius.circular(8),
-                    ),
-                    child: Text(
-                      "Login",
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
+                      child: Container(
+                        alignment: Alignment.center,
+                        height: 50,
+                        width: 150,
+                        child: Text(
+                          "Login",
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
                       ),
+                      onTap: () {},
                     ),
                   ),
                 ],
