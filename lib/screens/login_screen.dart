@@ -9,6 +9,14 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   String name = '';
+  final loginFormKey = GlobalKey<FormState>();
+  bool loginSuccessful = false;
+  goToHome() {
+    if (loginFormKey.currentState!.validate()) {
+      print('login successful');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,21 +37,40 @@ class _LoginScreenState extends State<LoginScreen> {
               padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 32),
               child: Column(
                 children: [
-                  TextFormField(
-                    decoration: InputDecoration(
-                      labelText: "Username",
-                      hintText: "Enter the username",
-                    ),
-                    onChanged: (value) {
-                      name = value;
-                      setState(() {});
-                    },
-                  ),
-                  TextFormField(
-                    obscureText: true,
-                    decoration: InputDecoration(
-                      labelText: "Password",
-                      hintText: "Enter the password",
+                  Form(
+                    key: loginFormKey,
+                    child: Column(
+                      children: [
+                        TextFormField(
+                          decoration: InputDecoration(
+                            labelText: "Username",
+                            hintText: "Enter the username",
+                          ),
+                          onChanged: (value) {
+                            name = value;
+                            setState(() {});
+                          },
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return "Username can't be empty";
+                            }
+                            return null;
+                          },
+                        ),
+                        TextFormField(
+                          obscureText: true,
+                          decoration: InputDecoration(
+                            labelText: "Password",
+                            hintText: "Enter the password",
+                          ),
+                          validator: (value) {
+                            if (value!.length < 6) {
+                              return "Password must be at least 6 characters";
+                            }
+                            return null;
+                          },
+                        ),
+                      ],
                     ),
                   ),
                   SizedBox(height: 20),
@@ -65,7 +92,9 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                         ),
                       ),
-                      onTap: () {},
+                      onTap: () {
+                        goToHome();
+                      },
                     ),
                   ),
                 ],
