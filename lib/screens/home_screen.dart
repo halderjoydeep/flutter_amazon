@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_amazon/models/catalog_model.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -19,10 +20,13 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   _loadData() async {
-    String catalogJson =
+    final String catalogJson =
         await rootBundle.loadString('assets/files/catalog.json');
-    dynamic decodedData = jsonDecode(catalogJson);
+    final decodedData = jsonDecode(catalogJson);
     var productsData = decodedData['products'];
+    CatalogModel.items =
+        List.of(productsData).map<Item>((item) => Item.fromMap(item)).toList();
+    setState(() {});
   }
 
   @override
