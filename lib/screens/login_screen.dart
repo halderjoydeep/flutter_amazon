@@ -11,16 +11,16 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   String name = '';
   final loginFormKey = GlobalKey<FormState>();
-  bool loginSuccessful = false;
+  bool buttonChange = false;
   goToHome() async {
     if (loginFormKey.currentState!.validate()) {
       setState(() {
-        loginSuccessful = true;
+        buttonChange = true;
       });
       await Future.delayed(Duration(seconds: 1));
       await Navigator.pushNamed(context, MyRoutes.homeRoute);
       setState(() {
-        loginSuccessful = false;
+        buttonChange = false;
       });
     }
   }
@@ -100,16 +100,15 @@ class _LoginScreenState extends State<LoginScreen> {
                   SizedBox(height: 20),
                   Material(
                     color: Theme.of(context).buttonColor,
-                    borderRadius:
-                        BorderRadius.circular(loginSuccessful ? 50 : 8),
+                    borderRadius: BorderRadius.circular(buttonChange ? 50 : 8),
                     child: InkWell(
                       borderRadius: BorderRadius.circular(8),
                       child: AnimatedContainer(
                         duration: Duration(seconds: 1),
                         alignment: Alignment.center,
                         height: 50,
-                        width: loginSuccessful ? 50 : 150,
-                        child: loginSuccessful
+                        width: buttonChange ? 50 : 150,
+                        child: buttonChange
                             ? Icon(Icons.done, color: Colors.white)
                             : Text(
                                 "Login",
