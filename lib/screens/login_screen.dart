@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_amazon/utils/routes.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -11,10 +12,15 @@ class _LoginScreenState extends State<LoginScreen> {
   String name = '';
   final loginFormKey = GlobalKey<FormState>();
   bool loginSuccessful = false;
-  goToHome() {
+  goToHome() async {
     if (loginFormKey.currentState!.validate()) {
       setState(() {
         loginSuccessful = true;
+      });
+      await Future.delayed(Duration(seconds: 1));
+      await Navigator.pushNamed(context, MyRoutes.homeRoute);
+      setState(() {
+        loginSuccessful = false;
       });
     }
   }
