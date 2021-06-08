@@ -11,6 +11,7 @@ class MyTheme {
   static ThemeData darkTheme() => ThemeData(
         primarySwatch: Colors.deepPurple,
         brightness: Brightness.dark,
+        canvasColor: Colors.black,
         buttonColor: lightBluishColor,
         accentColor: Colors.white,
       );

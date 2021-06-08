@@ -37,15 +37,35 @@ class _HomeScreenState extends State<HomeScreen> {
         centerTitle: true,
       ),
       body: ListView.builder(
-        itemCount: 10,
+        itemCount: CatalogModel.items!.length,
         itemBuilder: (context, index) {
+          final item = CatalogModel.items![index];
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
             child: Card(
               child: ListTile(
-                leading: Icon(Icons.phone_android),
-                title: Text("List Item"),
-                trailing: Icon(CupertinoIcons.cart_badge_plus),
+                contentPadding: EdgeInsets.all(16),
+                leading: Image.network(
+                  item.image,
+                  width: 100,
+                ),
+                title: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(item.name),
+                    Text(
+                      item.desc,
+                      style: Theme.of(context).textTheme.caption,
+                    ),
+                  ],
+                ),
+                trailing: Text(
+                  "\$${item.price.toString()}",
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20,
+                      color: Theme.of(context).buttonColor),
+                ),
               ),
             ),
           );
