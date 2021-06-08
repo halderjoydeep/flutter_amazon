@@ -1,8 +1,29 @@
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
+
+  @override
+  _HomeScreenState createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  @override
+  void initState() {
+    super.initState();
+    _loadData();
+  }
+
+  _loadData() async {
+    String catalogJson =
+        await rootBundle.loadString('assets/files/catalog.json');
+    dynamic decodedData = jsonDecode(catalogJson);
+    var productsData = decodedData['products'];
+  }
 
   @override
   Widget build(BuildContext context) {
