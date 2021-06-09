@@ -36,41 +36,45 @@ class _HomeScreenState extends State<HomeScreen> {
         title: Text("Amazon"),
         centerTitle: true,
       ),
-      body: ListView.builder(
-        itemCount: CatalogModel.items!.length,
-        itemBuilder: (context, index) {
-          final item = CatalogModel.items![index];
-          return Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-            child: Card(
-              child: ListTile(
-                contentPadding: EdgeInsets.all(16),
-                leading: Image.network(
-                  item.image,
-                  width: 100,
+      body: GridView.builder(
+          padding: const EdgeInsets.all(20),
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            crossAxisSpacing: 16,
+            mainAxisSpacing: 16,
+          ),
+          itemCount: CatalogModel.items!.length,
+          itemBuilder: (context, index) {
+            final Item item = CatalogModel.items![index];
+            return Card(
+              child: GridTile(
+                header: Container(
+                  alignment: Alignment.center,
+                  padding: const EdgeInsets.all(8),
+                  color: Theme.of(context).buttonColor,
+                  child: Text(
+                    item.name,
+                    style: TextStyle(color: Colors.white),
+                  ),
                 ),
-                title: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(item.name),
-                    Text(
-                      item.desc,
-                      style: Theme.of(context).textTheme.caption,
-                    ),
-                  ],
+                footer: Container(
+                  alignment: Alignment.center,
+                  padding: const EdgeInsets.all(8),
+                  color: Theme.of(context).buttonColor,
+                  child: Text(
+                    "\$${item.price}",
+                    style: TextStyle(color: Colors.white),
+                  ),
                 ),
-                trailing: Text(
-                  "\$${item.price.toString()}",
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20,
-                      color: Theme.of(context).buttonColor),
+                child: Container(
+                  padding: const EdgeInsets.all(32),
+                  child: Image.network(
+                    item.image,
+                  ),
                 ),
               ),
-            ),
-          );
-        },
-      ),
+            );
+          }),
       drawer: Drawer(),
     );
   }
