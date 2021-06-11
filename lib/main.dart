@@ -13,9 +13,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Amazon',
-      theme: MyTheme.lightTheme(),
-      darkTheme: MyTheme.darkTheme(),
+      theme: MyTheme.lightTheme(context),
+      darkTheme: MyTheme.darkTheme(context),
       themeMode: ThemeMode.system,
+      debugShowCheckedModeBanner: false,
       routes: {
         '/': (context) => LoginScreen(),
         MyRoutes.homeRoute: (context) => HomeScreen(),
