@@ -75,7 +75,66 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             );
           }),
-      drawer: Drawer(),
+      drawer: Drawer(
+        child: Container(
+          color: Colors.deepPurple,
+          child: ListView(
+            children: [
+              DrawerHeader(
+                padding: EdgeInsets.zero,
+                child: UserAccountsDrawerHeader(
+                  margin: EdgeInsets.zero,
+                  currentAccountPicture: CircleAvatar(
+                    backgroundImage: NetworkImage(
+                      "https://images.pexels.com/photos/594610/pexels-photo-594610.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+                    ),
+                  ),
+                  accountName: Text(
+                    "Dragon Warrior",
+                    textScaleFactor: 1.5,
+                  ),
+                  accountEmail: Text(
+                    "dragonwarrior57@gmail.com",
+                  ),
+                ),
+              ),
+              ListTile(
+                leading: Icon(
+                  CupertinoIcons.home,
+                  color: Colors.white,
+                ),
+                title: Text(
+                  "Home",
+                  style: TextStyle(color: Colors.white),
+                  textScaleFactor: 1.2,
+                ),
+              ),
+              ListTile(
+                leading: Icon(
+                  CupertinoIcons.profile_circled,
+                  color: Colors.white,
+                ),
+                title: Text(
+                  "Profile",
+                  style: TextStyle(color: Colors.white),
+                  textScaleFactor: 1.2,
+                ),
+              ),
+              ListTile(
+                leading: Icon(
+                  CupertinoIcons.mail,
+                  color: Colors.white,
+                ),
+                title: Text(
+                  "Email us",
+                  style: TextStyle(color: Colors.white),
+                  textScaleFactor: 1.2,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
