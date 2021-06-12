@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_amazon/models/catalog_model.dart';
 import 'package:flutter_amazon/widgets/home_screen_widgets/catalog_header.dart';
+import 'package:flutter_amazon/widgets/home_screen_widgets/catalog_list.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -34,11 +35,15 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(32.0),
+        child: Container(
+          padding: const EdgeInsets.all(32),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               CatalogHeader(),
+              Expanded(
+                child: CatalogList(),
+              ),
             ],
           ),
         ),
