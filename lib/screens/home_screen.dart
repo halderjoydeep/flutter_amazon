@@ -41,6 +41,9 @@ class _HomeScreenState extends State<HomeScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               CatalogHeader(),
+              SizedBox(
+                height: 10,
+              ),
               Expanded(
                 child: CatalogList(),
               ),

@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_amazon/models/catalog_model.dart';
@@ -47,6 +48,54 @@ class _CatalogItem extends StatelessWidget {
             ),
             child: Image.network(item.image),
           ),
+          SizedBox(
+            width: 10,
+          ),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  item.name,
+                  textScaleFactor: 1.25,
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Theme.of(context).accentColor,
+                  ),
+                ),
+                Text(
+                  item.desc,
+                  style: Theme.of(context).textTheme.caption,
+                ),
+                SizedBox(height: 10),
+                ButtonBar(
+                  alignment: MainAxisAlignment.spaceBetween,
+                  buttonPadding: EdgeInsets.zero,
+                  children: [
+                    Text(
+                      "\$${item.price}",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),
+                      textScaleFactor: 1.3,
+                    ),
+                    ElevatedButton(
+                      onPressed: () {},
+                      child: Icon(
+                        CupertinoIcons.cart_badge_plus,
+                      ),
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all(
+                            Theme.of(context).buttonColor),
+                        shape: MaterialStateProperty.all(StadiumBorder()),
+                      ),
+                    ),
+                  ],
+                )
+              ],
+            ),
+          )
         ],
       ),
     );
