@@ -22,6 +22,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   _loadData() async {
+    await Future.delayed(Duration(seconds: 2));
     final String catalogJson =
         await rootBundle.loadString('assets/files/catalog.json');
     final decodedData = jsonDecode(catalogJson);
@@ -44,9 +45,18 @@ class _HomeScreenState extends State<HomeScreen> {
               SizedBox(
                 height: 10,
               ),
-              Expanded(
-                child: CatalogList(),
-              ),
+              if (CatalogModel.items != null)
+                Expanded(
+                  child: CatalogList(),
+                )
+              else
+                Expanded(
+                  child: Center(
+                    child: CircularProgressIndicator(
+                      color: Theme.of(context).accentColor,
+                    ),
+                  ),
+                ),
             ],
           ),
         ),
