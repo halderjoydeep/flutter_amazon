@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_amazon/models/catalog_model.dart';
+import 'package:flutter_amazon/utils/routes.dart';
 
 class CatalogList extends StatelessWidget {
   const CatalogList({Key? key}) : super(key: key);
@@ -12,7 +13,13 @@ class CatalogList extends StatelessWidget {
       itemCount: CatalogModel.items!.length,
       itemBuilder: (context, index) {
         final Item item = CatalogModel.items![index];
-        return _CatalogItem(item: item);
+        return InkWell(
+          borderRadius: BorderRadius.circular(30),
+          child: _CatalogItem(item: item),
+          onTap: () {
+            Navigator.pushNamed(context, MyRoutes.productDetailsRoute);
+          },
+        );
       },
     );
   }

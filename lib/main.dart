@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_amazon/screens/home_screen.dart';
 import 'package:flutter_amazon/screens/login_screen.dart';
+import 'package:flutter_amazon/screens/product_details_screen.dart';
 import 'package:flutter_amazon/utils/routes.dart';
 import 'package:flutter_amazon/utils/themes.dart';
 
@@ -21,6 +22,7 @@ class MyApp extends StatelessWidget {
         '/': (context) => HomeScreen(),
         MyRoutes.homeRoute: (context) => HomeScreen(),
         MyRoutes.loginRoute: (context) => LoginScreen(),
+        MyRoutes.productDetailsRoute: (context) => ProductDetailsScreen(),
       },
     );
   }
